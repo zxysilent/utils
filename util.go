@@ -30,12 +30,12 @@ func RandStr(ln int) string {
 }
 
 // Atoi 字符串转数字 def 默认值
-func Atoi(s string, def ...int) int {
+func Atoi(s string, def ...int) (int, error) {
 	rtn, err := strconv.Atoi(s)
 	if err != nil && len(def) > 0 {
-		return def[0]
+		return def[0], err
 	}
-	return rtn
+	return rtn, nil
 }
 
 // InOf 目标是否在数组中
