@@ -25,14 +25,14 @@ func RandStr(ln int) string {
 	 * rng.Int63() 每次产出64bit的随机数,每次我们使用6bit(2^6=64) 可以使用10次
 	 */
 	buf := make([]byte, ln)
-	for idx, cache, remain := ln-1, rng.Int63(), 10; idx >= 0; {
+	for idx, cache, remain := 0, rng.Int63(), 10; idx < ln; {
 		if remain == 0 {
 			cache, remain = rng.Int63(), 10
 		}
 		buf[idx] = chars[int(cache&mask)%charsLen]
 		cache >>= 6
 		remain--
-		idx--
+		idx++
 	}
 	return *(*string)(unsafe.Pointer(&buf))
 }
