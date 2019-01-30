@@ -16,15 +16,13 @@ const (
 	charsLen    = len(chars)
 )
 
-func init() {
-	rand.Seed(time.Now().UnixNano())
-}
+var rng = rand.NewSource(time.Now().UnixNano())
 
 // RandStr 返回指定长度的随机字符串
 func RandStr(ln int) string {
 	buf := strings.Builder{}
 	for i := 0; i < ln; i++ {
-		buf.WriteByte(chars[rand.Intn(charsLen)])
+		buf.WriteByte(chars[rng.Int63()%int64(charsLen)])
 	}
 	return buf.String()
 }
