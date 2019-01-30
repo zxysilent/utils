@@ -3,8 +3,8 @@ package util
 import (
 	"math/rand"
 	"strconv"
-	"strings"
 	"time"
+	"unsafe"
 )
 
 const (
@@ -24,17 +24,17 @@ func RandStr(ln int) string {
 	/* chars 38个字符
 	 * rng.Int63() 每次产出64bit的随机数,每次我们使用6bit(2^6=64) 可以使用10次
 	 */
-	buf := strings.Builder{}
-	for idx, cache, remain := ln, rng.Int63(), 10; idx > 0; {
+	buf := make([]byte, ln)
+	for idx, cache, remain := ln-1, rng.Int63(), 10; idx >= 0; {
 		if remain == 0 {
 			cache, remain = rng.Int63(), 10
 		}
-		buf.WriteByte(chars[int(cache&mask)%charsLen])
+		buf[idx] = chars[int(cache&mask)%charsLen]
 		cache >>= 6
 		remain--
 		idx--
 	}
-	return buf.String()
+	return *(*string)(unsafe.Pointer(&buf))
 }
 
 // Atoi 字符串转数字 def 默认值
