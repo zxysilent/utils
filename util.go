@@ -12,7 +12,7 @@ const (
 
 	// FmtyyyyMMdd 年月日
 	FmtyyyyMMdd = "20060102"
-	chars       = "0123456789_abcdefghijkl-mnopqrstuvwxyz" //ABCDEFGHIJKLMNOPQRSTUVWXYZ
+	chars       = "0123456789abcdefghijklmnopqrstuvwxyz" //ABCDEFGHIJKLMNOPQRSTUVWXYZ
 	charsLen    = len(chars)
 	mask        = 1<<6 - 1
 )
