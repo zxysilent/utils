@@ -21,7 +21,7 @@ var rng = rand.NewSource(time.Now().UnixNano())
 
 // RandStr 返回指定长度的随机字符串
 func RandStr(ln int) string {
-	/* chars 38个字符
+	/* chars 36个字符
 	 * rng.Int63() 每次产出64bit的随机数,每次我们使用6bit(2^6=64) 可以使用10次
 	 */
 	buf := make([]byte, ln)
