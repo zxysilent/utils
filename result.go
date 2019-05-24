@@ -1,4 +1,4 @@
-package util
+package zutil
 
 //Result  format
 type Result struct {
@@ -22,6 +22,7 @@ const (
 	stErrDeny int = 330 //没有权限
 	stErrJwt  int = 340 //jwt未通过验证
 	stErrSvr  int = 350 //服务端错误
+	stExt     int = 400 //其他约定 //eg 更新 token
 )
 
 func newRes(code int, msg string, data ...interface{}) (int, Result) {
@@ -83,4 +84,9 @@ func NewErrJwt(msg string, data ...interface{}) (int, Result) {
 //NewErrSvr 返回一个服务端错误的结果格式
 func NewErrSvr(msg string, data ...interface{}) (int, Result) {
 	return newRes(stErrSvr, msg, data...)
+}
+
+//NewExt 返回一个其他约定的结果格式
+func NewExt(msg string, data ...interface{}) (int, Result) {
+	return newRes(stExt, msg, data...)
 }
