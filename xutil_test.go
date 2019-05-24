@@ -1,4 +1,4 @@
-package zutil
+package xutil
 
 import (
 	"testing"
