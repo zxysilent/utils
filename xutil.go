@@ -10,13 +10,17 @@ import (
 const (
 	// FormatDateTime 标准日期格式化
 	FormatDateTime = "2006-01-02 15:04:05"
-
 	// FmtyyyyMMdd 年月日
 	FmtyyyyMMdd = "20060102"
-	chars       = "0123456789abcdefghijklmnopqrstuvwxyz" //ABCDEFGHIJKLMNOPQRSTUVWXYZ
+	digit       = "0123456789"
+	capital     = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	lowercase   = "abcdefghijklmnopqrstuvwxyz"
+	chars       = digit + lowercase //ABCDEFGHIJKLMNOPQRSTUVWXYZ
 	charsLen    = len(chars)
 	mask        = 1<<6 - 1
 )
+
+//0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 
 var rng = rand.NewSource(time.Now().UnixNano())
 
