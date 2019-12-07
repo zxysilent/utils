@@ -1,14 +1,14 @@
 package utils
 
-//Reply  format
+// Reply  format
 type Reply struct {
 	Code int         `json:"code"`
 	Msg  string      `json:"msg"`
 	Data interface{} `json:"data,omitempty"`
 }
 
-//page format
-//Message
+// page format
+// Message
 type page struct {
 	Count int         `json:"count"`
 	Items interface{} `json:"items"`
@@ -25,7 +25,7 @@ const (
 	stExt     int = 400 //其他约定 //eg 更新 token
 )
 
-func newRes(code int, msg string, data ...interface{}) (int, Reply) {
+func newReply(code int, msg string, data ...interface{}) (int, Reply) {
 	if len(data) > 0 {
 		return 200, Reply{
 			Code: code,
@@ -39,17 +39,17 @@ func newRes(code int, msg string, data ...interface{}) (int, Reply) {
 	}
 }
 
-//Succ 返回一个成功标识的结果格式
+// Succ 返回一个成功标识的结果格式
 func Succ(msg string, data ...interface{}) (int, Reply) {
-	return newRes(stSucc, msg, data...)
+	return newReply(stSucc, msg, data...)
 }
 
-//Fail 返回一个失败标识的结果格式
+// Fail 返回一个失败标识的结果格式
 func Fail(msg string, data ...interface{}) (int, Reply) {
-	return newRes(stFail, msg, data...)
+	return newReply(stFail, msg, data...)
 }
 
-//Page 返回一个带有分页数据的结果格式
+// Page 返回一个带有分页数据的结果格式
 func Page(msg string, items interface{}, count int) (int, Reply) {
 	return 200, Reply{
 		Code: stSucc,
@@ -61,32 +61,32 @@ func Page(msg string, items interface{}, count int) (int, Reply) {
 	}
 }
 
-//ErrIpt 返回一个输入错误的结果格式
+// ErrIpt 返回一个输入错误的结果格式
 func ErrIpt(msg string, data ...interface{}) (int, Reply) {
-	return newRes(stErrIpt, msg, data...)
+	return newReply(stErrIpt, msg, data...)
 }
 
-//ErrOpt 返回一个输出错误的结果格式
+// ErrOpt 返回一个输出错误的结果格式
 func ErrOpt(msg string, data ...interface{}) (int, Reply) {
-	return newRes(stErrOpt, msg, data...)
+	return newReply(stErrOpt, msg, data...)
 }
 
-//ErrDeny 返回一个没有权限的结果格式
+// ErrDeny 返回一个没有权限的结果格式
 func ErrDeny(msg string, data ...interface{}) (int, Reply) {
-	return newRes(stErrDeny, msg, data...)
+	return newReply(stErrDeny, msg, data...)
 }
 
-//ErrJwt 返回一个通过验证的结果格式
+// ErrJwt 返回一个通过验证的结果格式
 func ErrJwt(msg string, data ...interface{}) (int, Reply) {
-	return newRes(stErrJwt, msg, data...)
+	return newReply(stErrJwt, msg, data...)
 }
 
-//ErrSvr 返回一个服务端错误的结果格式
+// ErrSvr 返回一个服务端错误的结果格式
 func ErrSvr(msg string, data ...interface{}) (int, Reply) {
-	return newRes(stErrSvr, msg, data...)
+	return newReply(stErrSvr, msg, data...)
 }
 
-//Ext 返回一个其他约定的结果格式
+// Ext 返回一个其他约定的结果格式
 func Ext(msg string, data ...interface{}) (int, Reply) {
-	return newRes(stExt, msg, data...)
+	return newReply(stExt, msg, data...)
 }
