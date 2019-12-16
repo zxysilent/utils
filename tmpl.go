@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"text/template"
+	"html/template"
 )
 
 // LoadTmpl 加载指定目录解析为模板 仅限 .html 文件
