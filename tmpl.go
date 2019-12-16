@@ -1,19 +1,22 @@
 package utils
 
 import (
+	"html/template"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
-	"html/template"
 )
 
 // LoadTmpl 加载指定目录解析为模板 仅限 .html 文件
 // eg: views/index.html ,views/subtmpl/subtmpl.html
-// tmpl:=LoadTmpl("./views")
+// tmpl:=LoadTmpl("./views",funcs)
 // tmpl.ExecuteTemplate(yourWriter, "index.html", yourData)、tmpl.ExecuteTemplate(yourWriter, "subtmpl/subtmpl.html", yourData)
-func LoadTmpl(root string) *template.Template {
+func LoadTmpl(root string, funcs template.FuncMap) *template.Template {
 	tmpl := template.New("LoadTmpl")
+	if funcs != nil {
+		tmpl.Funcs(funcs)
+	}
 	rln := len(root)
 	filepath.Walk(root, func(path string, fi os.FileInfo, err error) error {
 		pln := len(path)

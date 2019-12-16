@@ -6,7 +6,7 @@ import (
 )
 
 func TestLoadTmpl(t *testing.T) {
-	tmpl := LoadTmpl("./testdata/views")
+	tmpl := LoadTmpl("./testdata/views",nil)
 	if tmpl == nil {
 		t.Error("error")
 	}
@@ -24,7 +24,7 @@ func TestLoadTmplExec(t *testing.T) {
 		Name: "testName",
 		Arr:  []int{1, 3, 5, 7},
 	}
-	tmpl := LoadTmpl("./testdata/views")
+	tmpl := LoadTmpl("./testdata/views",nil)
 	if tmpl == nil {
 		t.Error("error")
 	}
