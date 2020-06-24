@@ -21,3 +21,19 @@ func BenchmarkRandStr16(b *testing.B) {
 		RandStr(16)
 	}
 }
+func BenchmarkRandDigitStr8(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		RandDigitStr(8)
+	}
+}
+
+func BenchmarkRandDigitStr10(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		RandDigitStr(10)
+	}
+}
+func BenchmarkRandDigitStr16(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		RandDigitStr(16)
+	}
+}
