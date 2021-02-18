@@ -45,9 +45,9 @@ func RandDigitStr(ln int) string {
 	 * rng.Int63() 每次产出64bit的随机数,每次我们使用4bit(2^4=16) 可以使用16次
 	 */
 	buf := make([]byte, ln)
-	for idx, cache, remain := 0, rng.Int63(), 10; idx < ln; {
+	for idx, cache, remain := 0, rng.Int63(), 16; idx < ln; {
 		if remain == 0 {
-			cache, remain = rng.Int63(), 10
+			cache, remain = rng.Int63(), 16
 		}
 		buf[idx] = chars[int(cache&digitMask)%digitLen]
 		cache >>= 4
