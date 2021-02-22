@@ -5,10 +5,16 @@ import (
 	"testing"
 )
 
+func TestLoadTmpl1(t *testing.T) {
+	_, err := LoadTmpl("./testdata/views1", nil)
+	if err != nil {
+		t.Error(err.Error())
+	}
+}
 func TestLoadTmpl(t *testing.T) {
-	tmpl := LoadTmpl("./testdata/views",nil)
-	if tmpl == nil {
-		t.Error("error")
+	tmpl, err := LoadTmpl("./testdata/views", nil)
+	if err != nil {
+		t.Error(err.Error())
 	}
 	tmpls := tmpl.Templates()
 	for i := 0; i < len(tmpls); i++ {
@@ -24,7 +30,7 @@ func TestLoadTmplExec(t *testing.T) {
 		Name: "testName",
 		Arr:  []int{1, 3, 5, 7},
 	}
-	tmpl := LoadTmpl("./testdata/views",nil)
+	tmpl, _ := LoadTmpl("./testdata/views", nil)
 	if tmpl == nil {
 		t.Error("error")
 	}
