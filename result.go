@@ -46,7 +46,7 @@ func NewErrDeny(msg string, data ...interface{}) (int, Reply) {
 // NewErrJwt 返回一个通过验证的结果格式
 // 推荐使用 ErrJwt
 func NewErrJwt(msg string, data ...interface{}) (int, Reply) {
-	return newReply(stErrJwt, msg, data...)
+	return newReply(stErrToken, msg, data...)
 }
 
 // NewErrSvr 返回一个服务端错误的结果格式

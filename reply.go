@@ -15,14 +15,14 @@ type page struct {
 }
 
 const (
-	stSucc    int = 200 //正常
-	stFail    int = 300 //失败
-	stErrIpt  int = 310 //输入数据有误
-	stErrOpt  int = 320 //无数据返回
-	stErrDeny int = 330 //没有权限
-	stErrJwt  int = 340 //jwt未通过验证
-	stErrSvr  int = 350 //服务端错误
-	stExt     int = 400 //其他约定 //eg 更新 token
+	stSucc     int = 200 //正常
+	stFail     int = 300 //失败
+	stErrIpt   int = 310 //输入数据有误
+	stErrOpt   int = 320 //无数据返回
+	stErrDeny  int = 330 //没有权限
+	stErrToken int = 340 //token错误
+	stErrSvr   int = 350 //服务端错误
+	stExt      int = 400 //其他约定 //eg 更新 token
 )
 
 func newReply(code int, msg string, data ...interface{}) (int, Reply) {
@@ -77,8 +77,14 @@ func ErrDeny(msg string, data ...interface{}) (int, Reply) {
 }
 
 // ErrJwt 返回一个通过验证的结果格式
+// 推荐使用 ErrToken
 func ErrJwt(msg string, data ...interface{}) (int, Reply) {
-	return newReply(stErrJwt, msg, data...)
+	return newReply(stErrToken, msg, data...)
+}
+
+// ErrJwt 返回一个通过验证的结果格式
+func ErrToken(msg string, data ...interface{}) (int, Reply) {
+	return newReply(stErrToken, msg, data...)
 }
 
 // ErrSvr 返回一个服务端错误的结果格式
