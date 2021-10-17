@@ -8,7 +8,6 @@ import (
 
 const (
 	digit     = "0123456789"
-	capital   = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	lowercase = "abcdefghijklmnopqrstuvwxyz"
 	chars     = digit + lowercase
 	charsLen  = len(chars)
