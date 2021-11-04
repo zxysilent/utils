@@ -37,3 +37,10 @@ func BenchmarkRandDigitStr16(b *testing.B) {
 		RandDigitStr(16)
 	}
 }
+
+func TestRandDigitStr(t *testing.T) {
+	RandDigitStr(20)
+}
+func TestRandStr(t *testing.T) {
+	RandStr(16)
+}

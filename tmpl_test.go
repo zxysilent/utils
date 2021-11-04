@@ -7,8 +7,8 @@ import (
 
 func TestLoadTmpl1(t *testing.T) {
 	_, err := LoadTmpl("./testdata/views1", nil)
-	if err != nil {
-		t.Error(err.Error())
+	if err == nil {
+		t.Error("must be error")
 	}
 }
 func TestLoadTmpl(t *testing.T) {
@@ -18,7 +18,9 @@ func TestLoadTmpl(t *testing.T) {
 	}
 	tmpls := tmpl.Templates()
 	for i := 0; i < len(tmpls); i++ {
-		t.Log(tmpls[i].Name())
+		if tmpls[i].Name() == "" {
+			t.Error("name eq ''")
+		}
 	}
 }
 
@@ -36,5 +38,7 @@ func TestLoadTmplExec(t *testing.T) {
 	}
 	w := bytes.NewBuffer(nil)
 	tmpl.ExecuteTemplate(w, "subtmpl/subtmpl.html", mod)
-	t.Log(w.String())
+	if w.String() != "nametestName" {
+		t.Error("name neq 'nametestName'")
+	}
 }
