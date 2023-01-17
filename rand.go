@@ -7,12 +7,10 @@ import (
 )
 
 const (
-	digit     = "0123456789"
-	lowercase = "abcdefghijklmnopqrstuvwxyz"
-	chars     = digit + lowercase
-	charsLen  = len(chars)
-	digitLen  = len(digit)
-	charsMask = 1<<6 - 1
+	digitStr  = "0123456789"
+	randStr   = "23456789abcdefghijkmnpqrstuvwxyz" //32
+	randMask  = 1<<5 - 1                           //11111
+	digitLen  = len(digitStr)
 	digitMask = 1<<4 - 1
 )
 
@@ -29,7 +27,7 @@ func RandStr(ln int) string {
 		if remain == 0 {
 			cache, remain = rng.Int63(), 10
 		}
-		buf[idx] = chars[int(cache&charsMask)%charsLen]
+		buf[idx] = randStr[cache&randMask]
 		cache >>= 6
 		remain--
 		idx++
@@ -48,7 +46,7 @@ func RandDigitStr(ln int) string {
 		if remain == 0 {
 			cache, remain = rng.Int63(), 16
 		}
-		buf[idx] = chars[int(cache&digitMask)%digitLen]
+		buf[idx] = digitStr[int(cache&digitMask)%digitLen]
 		cache >>= 4
 		remain--
 		idx++
