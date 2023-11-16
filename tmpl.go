@@ -2,7 +2,6 @@ package utils
 
 import (
 	"html/template"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -25,7 +24,7 @@ func LoadTmpl(root string, funcs template.FuncMap) (*template.Template, error) {
 		pln := len(path)
 		// 是文件 并且是 .html 结尾
 		if !fi.IsDir() && pln > 4 && path[pln-5:] == ".html" {
-			buf, err := ioutil.ReadFile(path)
+			buf, err := os.ReadFile(path)
 			if err != nil {
 				return err
 			}

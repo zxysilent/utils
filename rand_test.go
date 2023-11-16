@@ -4,43 +4,47 @@ import (
 	"testing"
 )
 
-// 性能测试
-func BenchmarkRandStr8(b *testing.B) {
+func BenchmarkUUID(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		RandStr(8)
+		UUID()
+	}
+}
+func TestUUID(t *testing.T) {
+	t.Log(UUID())
+}
+func BenchmarkSUID(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		SUID()
+	}
+}
+func TestSUID(t *testing.T) {
+	t.Log(SUID())
+}
+
+func BenchmarkRUID16(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		RUID(16)
 	}
 }
 
-func BenchmarkRandStr10(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		RandStr(10)
-	}
+func TestRUID16(t *testing.T) {
+	t.Log(RUID(16))
 }
-func BenchmarkRandStr16(b *testing.B) {
+
+func BenchmarkRUID8(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		RandStr(16)
-	}
-}
-func BenchmarkRandDigitStr8(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		RandDigitStr(8)
+		RUID(8)
 	}
 }
 
-func BenchmarkRandDigitStr10(b *testing.B) {
+func TestRUID8(t *testing.T) {
+	t.Log(RUID(8))
+}
+func BenchmarkDUID(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		RandDigitStr(10)
+		DUID(8)
 	}
 }
-func BenchmarkRandDigitStr16(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		RandDigitStr(16)
-	}
-}
-
-func TestRandDigitStr(t *testing.T) {
-	RandDigitStr(20)
-}
-func TestRandStr(t *testing.T) {
-	RandStr(16)
+func TestDUID(t *testing.T) {
+	t.Log(DUID(8))
 }
