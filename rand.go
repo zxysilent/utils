@@ -16,6 +16,7 @@ const (
 
 	digitStr  = "0123456789"
 	digitMask = 1<<4 - 1
+	variant   = "89ab"
 )
 
 // SUID SUID生成
@@ -83,6 +84,7 @@ func UUID() string {
 	buf[13] = '-'
 	buf[14] = '4'
 	buf[18] = '-'
+	buf[19] = variant[buf[19]%4]
 	buf[23] = '-'
 	return *(*string)(unsafe.Pointer(&buf))
 	// return unsafe.String(&buf[0], len(buf))
